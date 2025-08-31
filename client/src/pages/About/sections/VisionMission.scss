@@ -1,0 +1,91 @@
+.vision-mission {
+  &__grid {
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: 1fr;
+    
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  &__card {
+    background: white;
+    border-radius: var(--border-radius);
+    padding: 2.5rem;
+    box-shadow: var(--box-shadow);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+    border-top: 4px solid var(--accent-color, var(--primary-color));
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    }
+  }
+  
+  &__icon-wrapper {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent-color, var(--primary-color)) 0%, rgba(16, 185, 129, 0.9) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    color: white;
+    font-size: 1.75rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+  
+  &__title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--dark-color);
+    position: relative;
+    padding-bottom: 0.75rem;
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background-color: var(--accent-color, var(--primary-color));
+      border-radius: 2px;
+    }
+  }
+  
+  &__description {
+    color: var(--text-color);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+  
+  &__goals {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0 0;
+    
+    li {
+      position: relative;
+      padding-left: 1.75rem;
+      margin-bottom: 0.75rem;
+      color: var(--text-light);
+      
+      &::before {
+        content: '✓';
+        position: absolute;
+        left: 0;
+        color: var(--accent-color, var(--primary-color));
+        font-weight: bold;
+      }
+    }
+  }
+}

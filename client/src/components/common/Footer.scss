@@ -1,0 +1,445 @@
+/**
+ * Baybar Kurumsal Tanıtım Sitesi - Footer Stilleri
+ * Site alt bilgi ve bağlantılar stilleri
+ * @author Senior Web Developer
+ * @version 1.0.0
+ */
+
+// Footer ana container - Minimal
+.footer {
+  background: #ffffff;
+  color: #2c3e50;
+  margin-top: auto;
+  border-top: 1px solid #e9ecef;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.footer__main {
+  padding: var(--spacing-xl) 0;
+  
+  @media (max-width: 968px) {
+    padding: 3rem 0;
+  }
+  
+  @media (max-width: 768px) {
+    padding: var(--spacing-lg) 0;
+  }
+  
+  @media (max-width: 480px) {
+    padding: 2rem 0;
+  }
+}
+
+.footer__container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+  
+  @media (max-width: 968px) {
+    padding: 0 1rem;
+  }
+  
+  @media (max-width: 768px) {
+    padding: 0 var(--spacing-sm);
+  }
+  
+  @media (max-width: 480px) {
+    padding: 0 0.75rem;
+  }
+}
+
+.footer__grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.5fr;
+  gap: var(--spacing-xl);
+  
+  @media (max-width: 1200px) {
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 2rem;
+  }
+  
+  @media (max-width: 968px) {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+  
+  @media (max-width: 640px) {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+// Şirket bilgileri bölümü
+.footer__section {
+  &--company {
+    @media (max-width: 1024px) {
+      grid-column: 1 / -1;
+    }
+  }
+}
+
+.footer__brand {
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--spacing-md);
+}
+
+.footer__logo {
+  width: 40px;
+  height: 40px;
+  margin-right: var(--spacing-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-primary);
+  border-radius: 8px;
+  
+  &-icon {
+    width: 24px;
+    height: 24px;
+    color: white;
+  }
+}
+
+.footer__brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer__title {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #1a237e;
+  margin: 0;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.footer__subtitle {
+  font-size: 0.875rem;
+  color: #6c757d;
+  font-weight: 300;
+  margin-top: 4px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.footer__description {
+  color: #495057;
+  line-height: 1.6;
+  margin: var(--spacing-md) 0 var(--spacing-lg) 0;
+  font-size: 0.95rem;
+}
+
+// Sosyal medya
+.footer__social {
+  margin-top: var(--spacing-lg);
+}
+
+.footer__social-title {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin: 0 0 var(--spacing-sm) 0;
+}
+
+.footer__social-links {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.footer__social-link {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8f9fa;
+  border-radius: 12px;
+  color: #6c757d;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: 1px solid #e9ecef;
+  
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+  
+  &:hover {
+    background: #1a237e;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(26, 35, 126, 0.4);
+  }
+}
+
+// Bölüm başlıkları
+.footer__section-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #2c3e50;
+  margin: 0 0 var(--spacing-md) 0;
+  position: relative;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 30px;
+    height: 2px;
+    background: linear-gradient(90deg, #1a237e, #42a5f5);
+    border-radius: 1px;
+  }
+}
+
+// Bağlantılar
+.footer__links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.footer__link-item {
+  margin-bottom: var(--spacing-xs);
+}
+
+.footer__link {
+  color: #6c757d;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  display: inline-block;
+  position: relative;
+  
+  &:hover {
+    color: #1a237e;
+    transform: translateX(4px);
+  }
+  
+  &::before {
+    content: '';
+    position: absolute;
+    left: -12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 4px;
+    background: #1a237e;
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+  }
+  
+  &:hover::before {
+    opacity: 1;
+  }
+}
+
+// İletişim bilgileri
+.footer__contact {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.footer__contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+}
+
+.footer__contact-icon {
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  flex-shrink: 0;
+  color: #1a237e;
+  
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.footer__contact-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.footer__contact-label {
+  font-size: 0.8rem;
+  color: #6c757d;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.footer__contact-value {
+  color: #495057;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.footer__contact-link {
+  color: #495057;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  
+  &:hover {
+    color: #1a237e;
+  }
+}
+
+// Alt footer
+.footer__bottom {
+  background: #f8f9fa;
+  border-top: 1px solid #e9ecef;
+  padding: var(--spacing-md) 0;
+}
+
+.footer__bottom-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+    text-align: center;
+    gap: var(--spacing-sm);
+  }
+}
+
+.footer__copyright {
+  p {
+    margin: 0;
+    color: #6c757d;
+    font-size: 0.875rem;
+    
+    strong {
+      color: #2c3e50;
+      font-weight: 600;
+    }
+  }
+}
+
+.footer__legal {
+  display: flex;
+  gap: var(--spacing-md);
+  
+  @media (max-width: 480px) {
+    flex-direction: column;
+    gap: var(--spacing-xs);
+  }
+}
+
+.footer__legal-link {
+  color: #6c757d;
+  text-decoration: none;
+  font-size: 0.875rem;
+  transition: color 0.2s ease;
+  
+  &:hover {
+    color: #1a237e;
+  }
+  
+  &:not(:last-child)::after {
+    content: '|';
+    margin-left: var(--spacing-md);
+    color: #dee2e6;
+    
+    @media (max-width: 480px) {
+      display: none;
+    }
+  }
+}
+
+.footer__credits {
+  color: #6c757d;
+  font-size: 0.875rem;
+  
+  strong {
+    color: #1a237e;
+    font-weight: 600;
+  }
+}
+
+// Responsive düzenlemeler
+@media (max-width: 768px) {
+  .footer__grid {
+    text-align: center;
+  }
+  
+  .footer__brand {
+    justify-content: center;
+  }
+  
+  .footer__social-links {
+    justify-content: center;
+  }
+  
+  .footer__contact-item {
+    justify-content: center;
+    text-align: left;
+  }
+  
+  .footer__section-title::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+// Animasyonlar
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.footer__section {
+  animation: fadeInUp 0.6s ease-out;
+  
+  &:nth-child(1) { animation-delay: 0.1s; }
+  &:nth-child(2) { animation-delay: 0.2s; }
+  &:nth-child(3) { animation-delay: 0.3s; }
+  &:nth-child(4) { animation-delay: 0.4s; }
+}
+
+// Accessibility
+@media (prefers-reduced-motion: reduce) {
+  .footer__section,
+  .footer__social-link,
+  .footer__link,
+  .footer__contact-link,
+  .footer__legal-link {
+    animation: none;
+    transition: none;
+  }
+}
+
+// Print stilleri
+@media print {
+  .footer {
+    background: white !important;
+    color: black !important;
+    
+    * {
+      color: black !important;
+      background: transparent !important;
+    }
+    
+    .footer__social,
+    .footer__legal {
+      display: none;
+    }
+  }
+}

@@ -1,0 +1,940 @@
+/**
+ * Baybar Kurumsal Tanıtım Sitesi - Global Stiller
+ * Temel reset, tipografi ve yardımcı sınıflar
+ * @author Senior Web Developer
+ * @version 1.0.0
+ */
+
+@import 'variables';
+@import 'mixins';
+
+// ============================================================================
+// CSS CUSTOM PROPERTIES
+// ============================================================================
+
+:root {
+  // Design.md'deki renk paleti
+  --color-primary: #1A237E;        // Ana Renk: Koyu Mavi
+  --color-primary-light: #42A5F5;  // İkincil Renk: Açık Mavi
+  --color-secondary: #42A5F5;      // İkincil Renk: Açık Mavi
+  --color-accent: #FFC107;         // Vurgu Renk: Altın Sarısı
+  
+  // Temel renkler
+  --color-white: #FFFFFF;
+  --color-light-gray: #F8F9FA;
+  --color-background: #FFFFFF;
+  
+  // Metin renkleri
+  --color-text-primary: #2C3E50;   // Ana metin rengi
+  --color-text-secondary: #6C757D; // İkincil metin rengi
+  --color-text-muted: #ADB5BD;     // Soluk metin rengi
+  
+  // Durum renkleri
+  --color-success: #059669;
+  --color-warning: #d97706;
+  --color-error: #dc2626;
+  --color-info: #1A237E;
+  
+  // RGB değerleri (şeffaflık için)
+  --color-primary-rgb: 26, 35, 126;
+  --color-secondary-rgb: 66, 165, 245;
+  
+  // Spacing değerleri
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+}
+
+// ============================================================================
+// CSS RESET & NORMALIZE
+// ============================================================================
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: $font-size-root;
+  line-height: $line-height-root;
+  scroll-behavior: smooth;
+  
+  @include reduced-motion {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  font-family: $font-family-base;
+  font-size: $font-base;
+  font-weight: $font-light;
+  line-height: $leading-relaxed;
+  color: $text-color;
+  background-color: #ffffff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+  
+  &.no-scroll {
+    overflow: hidden;
+  }
+  
+  &.home-page {
+    padding-top: 0;
+  }
+  
+  // Minimal beyaz tema - karanlık mod devre dışı
+}
+
+// ============================================================================
+// TYPOGRAPHY
+// ============================================================================
+
+// Headings - Minimal Style
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-family-heading;
+  font-weight: $font-medium;
+  line-height: $leading-tight;
+  color: $primary-color;
+  margin-bottom: $spacing-4;
+  letter-spacing: -0.025em;
+}
+
+h1 {
+  @include font-size($font-4xl, $leading-tight);
+  
+  @include mobile {
+    @include font-size($font-3xl, $leading-tight);
+  }
+}
+
+h2 {
+  @include font-size($font-3xl, $leading-tight);
+  
+  @include mobile {
+    @include font-size($font-2xl, $leading-tight);
+  }
+}
+
+h3 {
+  @include font-size($font-2xl, $leading-snug);
+  
+  @include mobile {
+    @include font-size($font-xl, $leading-snug);
+  }
+}
+
+h4 {
+  @include font-size($font-xl, $leading-snug);
+  
+  @include mobile {
+    @include font-size($font-lg, $leading-snug);
+  }
+}
+
+h5 {
+  @include font-size($font-lg, $leading-normal);
+}
+
+h6 {
+  @include font-size($font-base, $leading-normal);
+  font-weight: $font-semibold;
+}
+
+// Paragraphs
+p {
+  margin-bottom: $spacing-4;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// Links
+a {
+  color: $primary-color;
+  text-decoration: none;
+  transition: $transition-colors;
+  
+  &:hover {
+    color: $primary-dark;
+    text-decoration: underline;
+  }
+  
+  &:focus {
+    @include focus-ring;
+  }
+  
+  @include dark-mode {
+    color: $dark-primary;
+    
+    &:hover {
+      color: $dark-primary-light;
+    }
+  }
+}
+
+// Lists
+ul, ol {
+  margin-bottom: $spacing-4;
+  padding-left: $spacing-6;
+  
+  li {
+    margin-bottom: $spacing-1;
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+// Blockquotes
+blockquote {
+  margin: $spacing-6 0;
+  padding: $spacing-4 $spacing-6;
+  border-left: 4px solid $primary-color;
+  background-color: $gray-50;
+  font-style: italic;
+  
+  p {
+    margin-bottom: 0;
+  }
+  
+  @include dark-mode {
+    background-color: $dark-bg-secondary;
+    border-left-color: $dark-primary;
+  }
+}
+
+// Code
+code {
+  font-family: $font-family-mono;
+  font-size: 0.875em;
+  padding: 0.125rem 0.25rem;
+  background-color: $gray-100;
+  border-radius: $radius-sm;
+  
+  @include dark-mode {
+    background-color: $dark-bg-tertiary;
+  }
+}
+
+pre {
+  font-family: $font-family-mono;
+  font-size: $font-sm;
+  line-height: $leading-relaxed;
+  padding: $spacing-4;
+  background-color: $gray-900;
+  color: $gray-100;
+  border-radius: $radius-base;
+  overflow-x: auto;
+  margin-bottom: $spacing-4;
+  
+  code {
+    background: none;
+    padding: 0;
+    color: inherit;
+  }
+}
+
+// Images
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+// Tables
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: $spacing-6;
+  
+  th,
+  td {
+    padding: $spacing-3 $spacing-4;
+    text-align: left;
+    border-bottom: 1px solid $gray-200;
+    
+    @include dark-mode {
+      border-bottom-color: $dark-border;
+    }
+  }
+  
+  th {
+    font-weight: $font-semibold;
+    background-color: $gray-50;
+    
+    @include dark-mode {
+      background-color: $dark-bg-secondary;
+    }
+  }
+}
+
+// Horizontal Rule
+hr {
+  border: none;
+  height: 1px;
+  background-color: $gray-200;
+  margin: $spacing-8 0;
+  
+  @include dark-mode {
+    background-color: $dark-border;
+  }
+}
+
+// ============================================================================
+// FORM ELEMENTS
+// ============================================================================
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 100%;
+  line-height: 1.15;
+  margin: 0;
+}
+
+button,
+input {
+  overflow: visible;
+}
+
+button,
+select {
+  text-transform: none;
+}
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: button;
+  appearance: button;
+}
+
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+
+button:-moz-focusring,
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+
+fieldset {
+  padding: 0.35em 0.75em 0.625em;
+}
+
+legend {
+  box-sizing: border-box;
+  color: inherit;
+  display: table;
+  max-width: 100%;
+  padding: 0;
+  white-space: normal;
+}
+
+progress {
+  vertical-align: baseline;
+}
+
+textarea {
+  overflow: auto;
+  resize: vertical;
+}
+
+[type="checkbox"],
+[type="radio"] {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+[type="search"] {
+  -webkit-appearance: textfield;
+  appearance: textfield;
+  outline-offset: -2px;
+}
+
+[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+::-webkit-file-upload-button {
+  -webkit-appearance: button;
+  font: inherit;
+}
+
+// ============================================================================
+// UTILITY CLASSES
+// ============================================================================
+
+// Container
+.container {
+  @include container;
+}
+
+.container-fluid {
+  @include container-fluid;
+}
+
+// Display
+.d-none { display: none !important; }
+.d-block { display: block !important; }
+.d-inline { display: inline !important; }
+.d-inline-block { display: inline-block !important; }
+.d-flex { display: flex !important; }
+.d-inline-flex { display: inline-flex !important; }
+.d-grid { display: grid !important; }
+
+@include mobile {
+  .d-mobile-none { display: none !important; }
+  .d-mobile-block { display: block !important; }
+  .d-mobile-flex { display: flex !important; }
+}
+
+@include tablet {
+  .d-tablet-none { display: none !important; }
+  .d-tablet-block { display: block !important; }
+  .d-tablet-flex { display: flex !important; }
+}
+
+@include desktop {
+  .d-desktop-none { display: none !important; }
+  .d-desktop-block { display: block !important; }
+  .d-desktop-flex { display: flex !important; }
+}
+
+// Flexbox
+.flex-row { flex-direction: row !important; }
+.flex-column { flex-direction: column !important; }
+.flex-wrap { flex-wrap: wrap !important; }
+.flex-nowrap { flex-wrap: nowrap !important; }
+
+.justify-start { justify-content: flex-start !important; }
+.justify-end { justify-content: flex-end !important; }
+.justify-center { justify-content: center !important; }
+.justify-between { justify-content: space-between !important; }
+.justify-around { justify-content: space-around !important; }
+.justify-evenly { justify-content: space-evenly !important; }
+
+.align-start { align-items: flex-start !important; }
+.align-end { align-items: flex-end !important; }
+.align-center { align-items: center !important; }
+.align-baseline { align-items: baseline !important; }
+.align-stretch { align-items: stretch !important; }
+
+.flex-1 { flex: 1 1 0% !important; }
+.flex-auto { flex: 1 1 auto !important; }
+.flex-initial { flex: 0 1 auto !important; }
+.flex-none { flex: none !important; }
+
+// Text Alignment
+.text-left { text-align: left !important; }
+.text-center { text-align: center !important; }
+.text-right { text-align: right !important; }
+.text-justify { text-align: justify !important; }
+
+// Text Transform
+.text-uppercase { text-transform: uppercase !important; }
+.text-lowercase { text-transform: lowercase !important; }
+.text-capitalize { text-transform: capitalize !important; }
+.text-normal-case { text-transform: none !important; }
+
+// Font Weight
+.font-thin { font-weight: $font-thin !important; }
+.font-light { font-weight: $font-light !important; }
+.font-normal { font-weight: $font-normal !important; }
+.font-medium { font-weight: $font-medium !important; }
+.font-semibold { font-weight: $font-semibold !important; }
+.font-bold { font-weight: $font-bold !important; }
+.font-extrabold { font-weight: $font-extrabold !important; }
+.font-black { font-weight: $font-black !important; }
+
+// Font Size
+.text-xs { font-size: $font-xs !important; }
+.text-sm { font-size: $font-sm !important; }
+.text-base { font-size: $font-base !important; }
+.text-lg { font-size: $font-lg !important; }
+.text-xl { font-size: $font-xl !important; }
+.text-2xl { font-size: $font-2xl !important; }
+.text-3xl { font-size: $font-3xl !important; }
+.text-4xl { font-size: $font-4xl !important; }
+.text-5xl { font-size: $font-5xl !important; }
+.text-6xl { font-size: $font-6xl !important; }
+
+// Colors
+.text-primary { color: $primary-color !important; }
+.text-secondary { color: $secondary-color !important; }
+.text-success { color: $success-color !important; }
+.text-warning { color: $warning-color !important; }
+.text-error { color: $error-color !important; }
+.text-info { color: $info-color !important; }
+.text-dark { color: $text-dark !important; }
+.text-muted { color: $text-muted !important; }
+.text-light { color: $text-light !important; }
+
+.bg-primary { background-color: $primary-color !important; }
+.bg-secondary { background-color: $secondary-color !important; }
+.bg-success { background-color: $success-color !important; }
+.bg-warning { background-color: $warning-color !important; }
+.bg-error { background-color: $error-color !important; }
+.bg-info { background-color: $info-color !important; }
+.bg-light { background-color: $bg-secondary !important; }
+.bg-dark { background-color: $gray-900 !important; }
+.bg-white { background-color: white !important; }
+.bg-transparent { background-color: transparent !important; }
+
+// Spacing
+@each $size, $value in (
+  0: 0,
+  1: $spacing-1,
+  2: $spacing-2,
+  3: $spacing-3,
+  4: $spacing-4,
+  5: $spacing-5,
+  6: $spacing-6,
+  8: $spacing-8,
+  10: $spacing-10,
+  12: $spacing-12,
+  16: $spacing-16,
+  20: $spacing-20,
+  24: $spacing-24
+) {
+  // Margin
+  .m-#{$size} { margin: $value !important; }
+  .mt-#{$size} { margin-top: $value !important; }
+  .mr-#{$size} { margin-right: $value !important; }
+  .mb-#{$size} { margin-bottom: $value !important; }
+  .ml-#{$size} { margin-left: $value !important; }
+  .mx-#{$size} { margin-left: $value !important; margin-right: $value !important; }
+  .my-#{$size} { margin-top: $value !important; margin-bottom: $value !important; }
+  
+  // Padding
+  .p-#{$size} { padding: $value !important; }
+  .pt-#{$size} { padding-top: $value !important; }
+  .pr-#{$size} { padding-right: $value !important; }
+  .pb-#{$size} { padding-bottom: $value !important; }
+  .pl-#{$size} { padding-left: $value !important; }
+  .px-#{$size} { padding-left: $value !important; padding-right: $value !important; }
+  .py-#{$size} { padding-top: $value !important; padding-bottom: $value !important; }
+}
+
+// Auto margins
+.m-auto { margin: auto !important; }
+.mt-auto { margin-top: auto !important; }
+.mr-auto { margin-right: auto !important; }
+.mb-auto { margin-bottom: auto !important; }
+.ml-auto { margin-left: auto !important; }
+.mx-auto { margin-left: auto !important; margin-right: auto !important; }
+.my-auto { margin-top: auto !important; margin-bottom: auto !important; }
+
+// Width & Height
+.w-auto { width: auto !important; }
+.w-full { width: 100% !important; }
+.w-screen { width: 100vw !important; }
+.w-min { width: min-content !important; }
+.w-max { width: max-content !important; }
+
+.h-auto { height: auto !important; }
+.h-full { height: 100% !important; }
+.h-screen { height: 100vh !important; }
+.h-min { height: min-content !important; }
+.h-max { height: max-content !important; }
+
+// Position
+.position-static { position: static !important; }
+.position-relative { position: relative !important; }
+.position-absolute { position: absolute !important; }
+.position-fixed { position: fixed !important; }
+.position-sticky { position: sticky !important; }
+
+// Z-index
+.z-0 { z-index: 0 !important; }
+.z-10 { z-index: 10 !important; }
+.z-20 { z-index: 20 !important; }
+.z-30 { z-index: 30 !important; }
+.z-40 { z-index: 40 !important; }
+.z-50 { z-index: 50 !important; }
+.z-auto { z-index: auto !important; }
+
+// Overflow
+.overflow-auto { overflow: auto !important; }
+.overflow-hidden { overflow: hidden !important; }
+.overflow-visible { overflow: visible !important; }
+.overflow-scroll { overflow: scroll !important; }
+.overflow-x-auto { overflow-x: auto !important; }
+.overflow-x-hidden { overflow-x: hidden !important; }
+.overflow-y-auto { overflow-y: auto !important; }
+.overflow-y-hidden { overflow-y: hidden !important; }
+
+// Border Radius
+.rounded-none { border-radius: 0 !important; }
+.rounded-sm { border-radius: $radius-sm !important; }
+.rounded { border-radius: $radius-base !important; }
+.rounded-md { border-radius: $radius-md !important; }
+.rounded-lg { border-radius: $radius-lg !important; }
+.rounded-xl { border-radius: $radius-xl !important; }
+.rounded-2xl { border-radius: $radius-2xl !important; }
+.rounded-3xl { border-radius: $radius-3xl !important; }
+.rounded-full { border-radius: $radius-full !important; }
+
+// Shadow
+.shadow-none { box-shadow: none !important; }
+.shadow-sm { box-shadow: $shadow-sm !important; }
+.shadow { box-shadow: $shadow-base !important; }
+.shadow-md { box-shadow: $shadow-md !important; }
+.shadow-lg { box-shadow: $shadow-lg !important; }
+.shadow-xl { box-shadow: $shadow-xl !important; }
+.shadow-2xl { box-shadow: $shadow-2xl !important; }
+
+// Opacity
+.opacity-0 { opacity: 0 !important; }
+.opacity-25 { opacity: 0.25 !important; }
+.opacity-50 { opacity: 0.5 !important; }
+.opacity-75 { opacity: 0.75 !important; }
+.opacity-100 { opacity: 1 !important; }
+
+// Cursor
+.cursor-auto { cursor: auto !important; }
+.cursor-default { cursor: default !important; }
+.cursor-pointer { cursor: pointer !important; }
+.cursor-wait { cursor: wait !important; }
+.cursor-text { cursor: text !important; }
+.cursor-move { cursor: move !important; }
+.cursor-help { cursor: help !important; }
+.cursor-not-allowed { cursor: not-allowed !important; }
+
+// User Select
+.select-none { user-select: none !important; }
+.select-text { user-select: text !important; }
+.select-all { user-select: all !important; }
+.select-auto { user-select: auto !important; }
+
+// Pointer Events
+.pointer-events-none { pointer-events: none !important; }
+.pointer-events-auto { pointer-events: auto !important; }
+
+// ============================================================================
+// COMPONENT CLASSES
+// ============================================================================
+
+// Buttons
+.btn {
+  @include btn-base;
+  
+  &.btn-primary {
+    @include btn-variant(#1a237e, white);
+  }
+  
+  &.btn-secondary {
+    @include btn-variant(#6c757d, white);
+  }
+  
+  &.btn-success {
+    @include btn-variant(#28a745, white);
+  }
+  
+  &.btn-warning {
+    @include btn-variant(#ffc107, #2c3e50);
+  }
+  
+  &.btn-error {
+    @include btn-variant(#dc3545, white);
+  }
+  
+  &.btn-outline-primary {
+    @include btn-outline(#1a237e);
+  }
+  
+  &.btn-outline-secondary {
+    @include btn-outline(#6c757d);
+  }
+  
+  &.btn-outline-white {
+    @include btn-outline(white, #1a237e, white);
+  }
+  
+  &.btn-sm {
+    @include btn-size($btn-padding-sm, $btn-font-sm);
+  }
+  
+  &.btn-lg {
+    @include btn-size($btn-padding-lg, $btn-font-lg);
+  }
+  
+  &.btn-block {
+    width: 100%;
+  }
+}
+
+// Cards
+.card {
+  @include card;
+  
+  &.card-hover {
+    @include card-hover;
+  }
+  
+  &.card-interactive {
+    @include card-interactive;
+  }
+}
+
+// Forms
+.form-group {
+  @include form-group;
+}
+
+.form-label {
+  @include form-label;
+}
+
+.form-input {
+  @include form-input;
+}
+
+.form-textarea {
+  @include form-input;
+  min-height: 120px;
+  resize: vertical;
+}
+
+.form-select {
+  @include form-input;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 0.5rem center;
+  background-repeat: no-repeat;
+  background-size: 1.5em 1.5em;
+  padding-right: 2.5rem;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+// Animations
+.fade-in {
+  @include fade-in;
+}
+
+.fade-in-up {
+  @include fade-in-up;
+}
+
+.slide-in-left {
+  @include slide-in-left;
+}
+
+.bounce-in {
+  @include bounce-in;
+}
+
+// Loading
+.loading {
+  @include flex-center;
+  
+  &.loading-spinner {
+    @include spin;
+  }
+  
+  &.loading-pulse {
+    @include pulse;
+  }
+}
+
+// ============================================================================
+// ACCESSIBILITY
+// ============================================================================
+
+.sr-only {
+  @include sr-only;
+}
+
+.skip-link {
+  @include skip-link;
+}
+
+// Focus styles
+.focus\:ring:focus {
+  @include focus-ring;
+}
+
+// Reduced motion
+@include reduced-motion {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+// High contrast
+@include high-contrast {
+  * {
+    border-color: currentColor !important;
+  }
+  
+  .btn {
+    border: 2px solid currentColor !important;
+  }
+}
+
+// ============================================================================
+// PRINT STYLES
+// ============================================================================
+
+@media print {
+  @include print-styles;
+  
+  .print-hidden {
+    @include print-hidden;
+  }
+  
+  .print-only {
+    @include print-only;
+  }
+  
+  .btn,
+  .card {
+    box-shadow: none !important;
+    border: 1px solid #000 !important;
+  }
+  
+  .bg-primary,
+  .bg-secondary,
+  .bg-success,
+  .bg-warning,
+  .bg-error,
+  .bg-info {
+    background: white !important;
+    color: black !important;
+  }
+}
+
+// ============================================================================
+// DARK MODE
+// ============================================================================
+
+@include dark-mode {
+  .card {
+    background-color: $dark-bg-secondary;
+    border-color: $dark-border;
+  }
+  
+  .form-input,
+  .form-textarea,
+  .form-select {
+    background-color: $dark-bg-secondary;
+    border-color: $dark-border;
+    color: $dark-text-primary;
+    
+    &::placeholder {
+      color: $dark-text-secondary;
+    }
+    
+    &:focus {
+      border-color: $dark-primary;
+    }
+  }
+  
+  .btn {
+    &.btn-outline-primary {
+      color: $dark-primary;
+      border-color: $dark-primary;
+      
+      &:hover {
+        background-color: $dark-primary;
+        color: white;
+      }
+    }
+  }
+}
+
+// ============================================================================
+// SCROLLBAR
+// ============================================================================
+
+::-webkit-scrollbar {
+  @include custom-scrollbar;
+}
+
+// ============================================================================
+// SELECTION
+// ============================================================================
+
+::selection {
+  background-color: rgba($primary-color, 0.2);
+  color: $text-dark;
+}
+
+::-moz-selection {
+  background-color: rgba($primary-color, 0.2);
+  color: $text-dark;
+}
+
+// ============================================================================
+// PERFORMANCE OPTIMIZATIONS
+// ============================================================================
+
+.gpu-accelerated {
+  @include gpu-acceleration;
+}
+
+.optimized-animation {
+  @include optimize-animation;
+}
+
+// ============================================================================
+// RESPONSIVE UTILITIES
+// ============================================================================
+
+@include mobile {
+  .mobile\:text-center { text-align: center !important; }
+  .mobile\:text-left { text-align: left !important; }
+  .mobile\:hidden { display: none !important; }
+  .mobile\:block { display: block !important; }
+  .mobile\:flex { display: flex !important; }
+  .mobile\:flex-col { flex-direction: column !important; }
+}
+
+@include tablet {
+  .tablet\:text-center { text-align: center !important; }
+  .tablet\:text-left { text-align: left !important; }
+  .tablet\:hidden { display: none !important; }
+  .tablet\:block { display: block !important; }
+  .tablet\:flex { display: flex !important; }
+  .tablet\:flex-col { flex-direction: column !important; }
+}
+
+@include desktop {
+  .desktop\:text-center { text-align: center !important; }
+  .desktop\:text-left { text-align: left !important; }
+  .desktop\:hidden { display: none !important; }
+  .desktop\:block { display: block !important; }
+  .desktop\:flex { display: flex !important; }
+  .desktop\:flex-row { flex-direction: row !important; }
+}

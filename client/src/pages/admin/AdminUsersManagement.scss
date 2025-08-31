@@ -1,0 +1,899 @@
+/**
+ * Admin Kullanıcı Yönetimi Sayfası Stilleri
+ * Modern, responsive ve kullanıcı dostu tasarım
+ * @author Senior Web Developer
+ * @version 1.0.0
+ */
+
+.admin-users-management {
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  background: #ffffff;
+  min-height: 100vh;
+
+  // Header Bölümü
+  .users-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e2e8f0;
+    gap: 2rem;
+
+    .header-content {
+      flex: 1;
+
+      h1 {
+        margin: 0 0 0.5rem 0;
+        font-size: 2rem;
+        font-weight: 700;
+        color: #1a202c;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      p {
+        margin: 0;
+        color: #64748b;
+        font-size: 1rem;
+      }
+    }
+
+    .header-stats {
+      display: flex;
+      gap: 1rem;
+
+      .stat-card {
+        background: #f8fafc;
+        padding: 1rem 1.5rem;
+        border-radius: 8px;
+        border: 1px solid #e2e8f0;
+        text-align: center;
+        min-width: 100px;
+
+        .stat-number {
+          display: block;
+          font-size: 1.5rem;
+          font-weight: 700;
+          color: #3b82f6;
+          margin-bottom: 0.25rem;
+        }
+
+        .stat-label {
+          font-size: 0.875rem;
+          color: #64748b;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+
+  // Yükleme Durumu
+  .loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+    .loading-spinner {
+      width: 40px;
+      height: 40px;
+      border: 4px solid #e2e8f0;
+      border-top: 4px solid #3b82f6;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      color: #64748b;
+      font-size: 1.1rem;
+      margin: 0;
+    }
+  }
+
+  // Bildirimler
+  .alert {
+    display: flex;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+    position: relative;
+
+    .alert-icon {
+      margin-right: 0.75rem;
+      font-size: 1.2rem;
+    }
+
+    .alert-text {
+      flex: 1;
+    }
+
+    .alert-close {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 0;
+      margin-left: 1rem;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+
+    &.alert-error {
+      background: #fef2f2;
+      color: #dc2626;
+      border: 1px solid #fecaca;
+    }
+
+    &.alert-success {
+      background: #f0fdf4;
+      color: #16a34a;
+      border: 1px solid #bbf7d0;
+    }
+  }
+
+  // Tab Navigation
+  .tab-navigation {
+    display: flex;
+    background: white;
+    border-radius: 12px;
+    padding: 0.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e2e8f0;
+    gap: 0.5rem;
+
+    .tab-btn {
+      flex: 1;
+      padding: 1rem 1.5rem;
+      background: none;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      color: #64748b;
+      white-space: nowrap;
+
+      &:hover {
+        background: #f1f5f9;
+        color: #334155;
+      }
+
+      &.active {
+        background: #3b82f6;
+        color: white;
+        box-shadow: 0 2px 4px rgba(59, 130, 246, 0.3);
+      }
+    }
+  }
+
+  // Kullanıcılar Listesi Bölümü
+  .users-list-section {
+    // Filtreler
+    .filters {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+
+      .search-box {
+        position: relative;
+        flex: 2;
+        min-width: 300px;
+
+        .search-input {
+          width: 100%;
+          padding: 0.75rem 1rem 0.75rem 3rem;
+          border: 2px solid #e2e8f0;
+          border-radius: 8px;
+          font-size: 1rem;
+          transition: border-color 0.3s ease;
+
+          &:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+          }
+        }
+
+        .search-icon {
+          position: absolute;
+          left: 1rem;
+          top: 50%;
+          transform: translateY(-50%);
+          font-size: 1.2rem;
+          color: #64748b;
+        }
+      }
+
+      .filter-select {
+        padding: 0.75rem 1rem;
+        border: 2px solid #e2e8f0;
+        border-radius: 8px;
+        font-size: 1rem;
+        background: white;
+        cursor: pointer;
+        transition: border-color 0.3s ease;
+        min-width: 150px;
+
+        &:focus {
+          outline: none;
+          border-color: #3b82f6;
+          box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+      }
+    }
+
+    // Boş Durum
+    .empty-state {
+      text-align: center;
+      padding: 4rem 2rem;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      border: 1px solid #e2e8f0;
+
+      .empty-icon {
+        font-size: 4rem;
+        margin-bottom: 1rem;
+        opacity: 0.5;
+      }
+
+      h3 {
+        margin: 0 0 0.5rem 0;
+        color: #374151;
+        font-size: 1.5rem;
+      }
+
+      p {
+        margin: 0;
+        color: #64748b;
+        font-size: 1.1rem;
+      }
+    }
+
+    // Kullanıcılar Tablosu
+    .users-table-container {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      border: 1px solid #e2e8f0;
+      overflow: hidden;
+
+      .users-table {
+        width: 100%;
+        border-collapse: collapse;
+
+        thead {
+          background: #f8fafc;
+          border-bottom: 2px solid #e2e8f0;
+
+          th {
+            padding: 1rem 1.5rem;
+            text-align: left;
+            font-weight: 600;
+            color: #374151;
+            font-size: 0.95rem;
+            white-space: nowrap;
+          }
+        }
+
+        tbody {
+          tr {
+            border-bottom: 1px solid #f1f5f9;
+            transition: background-color 0.2s ease;
+
+            &:hover {
+              background: #f8fafc;
+            }
+
+            &:last-child {
+              border-bottom: none;
+            }
+
+            td {
+              padding: 1rem 1.5rem;
+              vertical-align: middle;
+
+              .user-info {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+
+                .user-avatar {
+                  width: 50px;
+                  height: 50px;
+                  border-radius: 50%;
+                  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+                  color: white;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  font-weight: 700;
+                  font-size: 1.2rem;
+                  flex-shrink: 0;
+                }
+
+                .user-details {
+                  .user-name {
+                    font-weight: 600;
+                    color: #1a202c;
+                    margin-bottom: 0.25rem;
+                    font-size: 1rem;
+                  }
+
+                  .user-email {
+                    color: #3b82f6;
+                    font-size: 0.875rem;
+                    margin-bottom: 0.25rem;
+                  }
+
+                  .user-phone {
+                    color: #64748b;
+                    font-size: 0.8rem;
+                  }
+                }
+              }
+
+              .role-badge {
+                color: white;
+                padding: 0.25rem 0.75rem;
+                border-radius: 6px;
+                font-size: 0.8rem;
+                font-weight: 600;
+                white-space: nowrap;
+              }
+
+              .status-select {
+                padding: 0.25rem 0.5rem;
+                border: 1px solid #e2e8f0;
+                border-radius: 4px;
+                font-size: 0.8rem;
+                background: white;
+                cursor: pointer;
+                font-weight: 600;
+
+                &:focus {
+                  outline: none;
+                  border-color: #3b82f6;
+                }
+              }
+
+              .department {
+                color: #374151;
+                font-weight: 500;
+                padding: 0.25rem 0.75rem;
+                background: #f1f5f9;
+                border-radius: 6px;
+                font-size: 0.8rem;
+              }
+
+              .last-login {
+                color: #64748b;
+                font-size: 0.875rem;
+              }
+
+              .table-actions {
+                display: flex;
+                gap: 0.5rem;
+                align-items: center;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // Kullanıcı Formu Bölümü
+  .user-form-section {
+    .form-container {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      border: 1px solid #e2e8f0;
+      overflow: hidden;
+
+      .form-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 2rem;
+        background: #f8fafc;
+        border-bottom: 1px solid #e2e8f0;
+
+        h2 {
+          margin: 0;
+          font-size: 1.75rem;
+          font-weight: 700;
+          color: #1a202c;
+        }
+      }
+
+      form {
+        padding: 2rem;
+
+        .form-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+          gap: 1.5rem;
+          margin-bottom: 2rem;
+        }
+
+        .form-group {
+          margin-bottom: 1.5rem;
+
+          label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #374151;
+            font-size: 0.95rem;
+          }
+
+          .form-control {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+
+            &:focus {
+              outline: none;
+              border-color: #3b82f6;
+              box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+            }
+          }
+        }
+
+        .permissions-section {
+          margin-top: 2rem;
+          padding-top: 2rem;
+          border-top: 1px solid #f1f5f9;
+
+          h3 {
+            margin: 0 0 1.5rem 0;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #374151;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+          }
+
+          .permissions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+
+            .permission-item {
+              display: flex;
+              align-items: center;
+              gap: 0.75rem;
+              padding: 0.75rem 1rem;
+              background: #f8fafc;
+              border: 1px solid #e2e8f0;
+              border-radius: 8px;
+              cursor: pointer;
+              transition: all 0.3s ease;
+
+              &:hover {
+                background: #f1f5f9;
+                border-color: #cbd5e1;
+              }
+
+              input[type="checkbox"] {
+                width: 18px;
+                height: 18px;
+                accent-color: #3b82f6;
+                cursor: pointer;
+              }
+
+              .permission-label {
+                font-size: 0.95rem;
+                color: #374151;
+                font-weight: 500;
+                cursor: pointer;
+              }
+            }
+          }
+        }
+
+        .form-actions {
+          display: flex;
+          gap: 1rem;
+          justify-content: flex-end;
+          padding-top: 1.5rem;
+          border-top: 1px solid #f1f5f9;
+
+          @media (max-width: 768px) {
+            flex-direction: column;
+          }
+        }
+      }
+    }
+  }
+
+  // Modal Stilleri
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 1rem;
+
+    .modal {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      max-width: 500px;
+      width: 100%;
+      overflow: hidden;
+
+      .modal-header {
+        padding: 1.5rem 2rem;
+        background: #f8fafc;
+        border-bottom: 1px solid #e2e8f0;
+
+        h3 {
+          margin: 0;
+          font-size: 1.25rem;
+          font-weight: 600;
+          color: #1a202c;
+        }
+      }
+
+      .modal-content {
+        padding: 2rem;
+
+        p {
+          margin: 0 0 1rem 0;
+          color: #374151;
+          line-height: 1.5;
+
+          &.warning-text {
+            color: #dc2626;
+            font-weight: 500;
+            background: #fef2f2;
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid #fecaca;
+          }
+        }
+      }
+
+      .modal-actions {
+        display: flex;
+        gap: 1rem;
+        justify-content: flex-end;
+        padding: 1.5rem 2rem;
+        background: #f8fafc;
+        border-top: 1px solid #e2e8f0;
+
+        @media (max-width: 480px) {
+          flex-direction: column;
+        }
+      }
+    }
+  }
+
+  // Butonlar
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    gap: 0.5rem;
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    &.btn-sm {
+      padding: 0.5rem 1rem;
+      font-size: 0.875rem;
+    }
+
+    &.btn-primary {
+      background: #3b82f6;
+      color: white;
+
+      &:hover:not(:disabled) {
+        background: #2563eb;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+      }
+    }
+
+    &.btn-secondary {
+      background: #f1f5f9;
+      color: #475569;
+      border: 1px solid #e2e8f0;
+
+      &:hover:not(:disabled) {
+        background: #e2e8f0;
+        color: #334155;
+      }
+    }
+
+    &.btn-danger {
+      background: #ef4444;
+      color: white;
+
+      &:hover:not(:disabled) {
+        background: #dc2626;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+      }
+    }
+  }
+
+  // Animasyonlar
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  // Responsive Tasarım
+  @media (max-width: 1024px) {
+    padding: 1.5rem;
+
+    .users-table-container {
+      overflow-x: auto;
+
+      .users-table {
+        min-width: 800px;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+
+    .users-header {
+      flex-direction: column;
+      gap: 1.5rem;
+
+      .header-stats {
+        width: 100%;
+        justify-content: space-around;
+
+        .stat-card {
+          flex: 1;
+          min-width: auto;
+        }
+      }
+    }
+
+    .tab-navigation {
+      .tab-btn {
+        padding: 0.75rem 1rem;
+        font-size: 0.9rem;
+      }
+    }
+
+    .filters {
+      flex-direction: column;
+
+      .search-box {
+        min-width: auto;
+      }
+
+      .filter-select {
+        min-width: auto;
+      }
+    }
+
+    .users-table-container {
+      .users-table {
+        thead th {
+          padding: 0.75rem 1rem;
+          font-size: 0.875rem;
+        }
+
+        tbody td {
+          padding: 0.75rem 1rem;
+
+          .user-info {
+            .user-avatar {
+              width: 40px;
+              height: 40px;
+              font-size: 1rem;
+            }
+
+            .user-details {
+              .user-name {
+                font-size: 0.9rem;
+              }
+
+              .user-email {
+                font-size: 0.8rem;
+              }
+
+              .user-phone {
+                font-size: 0.75rem;
+              }
+            }
+          }
+
+          .table-actions {
+            flex-direction: column;
+            gap: 0.25rem;
+          }
+        }
+      }
+    }
+
+    .form-container {
+      .form-header {
+        padding: 1.5rem;
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+
+        h2 {
+          font-size: 1.5rem;
+        }
+      }
+
+      form {
+        padding: 1.5rem;
+
+        .form-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .permissions-section {
+          .permissions-grid {
+            grid-template-columns: 1fr;
+          }
+        }
+
+        .form-actions {
+          padding: 1.5rem;
+          flex-direction: column;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    padding: 0.5rem;
+
+    .users-header {
+      padding: 1rem;
+
+      .header-content h1 {
+        font-size: 1.5rem;
+      }
+
+      .header-stats {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+    }
+
+    .users-table-container {
+      .users-table {
+        min-width: 600px;
+
+        thead th {
+          padding: 0.5rem;
+          font-size: 0.8rem;
+        }
+
+        tbody td {
+          padding: 0.5rem;
+
+          .user-info {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.5rem;
+
+            .user-avatar {
+              width: 35px;
+              height: 35px;
+              font-size: 0.9rem;
+            }
+          }
+
+          .role-badge,
+          .department {
+            font-size: 0.7rem;
+            padding: 0.2rem 0.5rem;
+          }
+
+          .status-select {
+            font-size: 0.7rem;
+            padding: 0.2rem 0.4rem;
+          }
+
+          .last-login {
+            font-size: 0.75rem;
+          }
+        }
+      }
+    }
+
+    .form-container {
+      .form-header {
+        padding: 1rem;
+
+        h2 {
+          font-size: 1.25rem;
+        }
+      }
+
+      form {
+        padding: 1rem;
+
+        .permissions-section {
+          .permissions-grid {
+            .permission-item {
+              padding: 0.5rem 0.75rem;
+
+              .permission-label {
+                font-size: 0.875rem;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .modal {
+      margin: 0.5rem;
+
+      .modal-header {
+        padding: 1rem 1.5rem;
+
+        h3 {
+          font-size: 1.1rem;
+        }
+      }
+
+      .modal-content {
+        padding: 1.5rem;
+      }
+
+      .modal-actions {
+        padding: 1rem 1.5rem;
+      }
+    }
+  }
+}

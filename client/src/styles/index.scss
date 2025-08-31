@@ -1,0 +1,300 @@
+/**
+ * Baybar Kurumsal Tanıtım Sitesi - Ana Stil Dosyası
+ * Global stiller ve ana import dosyası
+ * @author Senior Web Developer
+ * @version 1.0.0
+ */
+
+// Ana stil dosyasını import et
+@import 'App.scss';
+
+// ============================================================================
+// GLOBAL OVERRIDES
+// ============================================================================
+
+// React uygulaması için özel ayarlar
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+// Code splitting için loading state
+.route-loading {
+  @include flex-center;
+  min-height: 50vh;
+  
+  .loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid $gray-200;
+    border-top: 3px solid $primary-color;
+    border-radius: $radius-full;
+    @include spin;
+  }
+}
+
+// Error boundary stilleri
+.error-boundary {
+  @include flex-center;
+  min-height: 50vh;
+  padding: $spacing-8;
+  text-align: center;
+  
+  .error-content {
+    max-width: 600px;
+    
+    .error-icon {
+      font-size: $font-5xl;
+      color: $error-color;
+      margin-bottom: $spacing-4;
+    }
+    
+    .error-title {
+      @include heading($font-2xl, $font-bold);
+      color: $error-color;
+      margin-bottom: $spacing-2;
+    }
+    
+    .error-message {
+      color: $text-muted;
+      margin-bottom: $spacing-6;
+      line-height: $leading-relaxed;
+    }
+    
+    .error-stack {
+      background-color: $gray-100;
+      padding: $spacing-4;
+      border-radius: $radius-base;
+      font-family: $font-family-mono;
+      font-size: $font-sm;
+      text-align: left;
+      overflow-x: auto;
+      margin-top: $spacing-4;
+      
+      @include dark-mode {
+        background-color: $dark-bg-tertiary;
+      }
+    }
+  }
+}
+
+// React Router geçiş animasyonları
+.page-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity $animation-duration-base $animation-easing-ease-out,
+              transform $animation-duration-base $animation-easing-ease-out;
+}
+
+.page-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.page-exit-active {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity $animation-duration-fast $animation-easing-ease-in,
+              transform $animation-duration-fast $animation-easing-ease-in;
+}
+
+// ============================================================================
+// DEVELOPMENT HELPERS
+// ============================================================================
+
+// Development mode için debug stilleri
+.debug {
+  * {
+    outline: 1px solid red !important;
+  }
+}
+
+// React DevTools için
+.__react-inspector-theme-chromeLight {
+  background-color: $bg-primary !important;
+}
+
+.__react-inspector-theme-chromeDark {
+  background-color: $dark-bg-primary !important;
+}
+
+// ============================================================================
+// BROWSER SPECIFIC FIXES
+// ============================================================================
+
+// Safari için
+@supports (-webkit-appearance: none) {
+  .safari-fix {
+    -webkit-appearance: none;
+    appearance: none;
+  }
+}
+
+// Firefox için
+@-moz-document url-prefix() {
+  .firefox-fix {
+    -moz-appearance: none;
+    appearance: none;
+  }
+}
+
+// Edge için
+@supports (-ms-ime-align: auto) {
+  .edge-fix {
+    -ms-overflow-style: none;
+  }
+}
+
+// ============================================================================
+// PERFORMANCE OPTIMIZATIONS
+// ============================================================================
+
+// Critical CSS için
+.above-fold {
+  contain: layout style paint;
+}
+
+// Lazy loading için
+.lazy-load {
+  opacity: 0;
+  transition: opacity $animation-duration-base $animation-easing-ease-out;
+  
+  &.loaded {
+    opacity: 1;
+  }
+}
+
+// Image optimization
+.optimized-image {
+  object-fit: cover;
+  object-position: center;
+  
+  &.lazy {
+    filter: blur(5px);
+    transition: filter $animation-duration-base $animation-easing-ease-out;
+    
+    &.loaded {
+      filter: blur(0);
+    }
+  }
+}
+
+// ============================================================================
+// THIRD-PARTY INTEGRATIONS
+// ============================================================================
+
+// Google Maps stilleri
+.gm-style {
+  .gm-style-iw {
+    border-radius: $radius-base !important;
+    box-shadow: $shadow-lg !important;
+  }
+  
+  .gm-style-iw-c {
+    padding: $spacing-4 !important;
+  }
+}
+
+// reCAPTCHA stilleri
+.grecaptcha-badge {
+  z-index: $z-tooltip !important;
+}
+
+// ============================================================================
+// UTILITY OVERRIDES
+// ============================================================================
+
+// React specific utilities
+.react-transition-group {
+  position: relative;
+}
+
+.transition-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+// Suspense fallback
+.suspense-fallback {
+  @include flex-center;
+  min-height: 200px;
+  
+  .fallback-content {
+    text-align: center;
+    
+    .fallback-spinner {
+      width: 32px;
+      height: 32px;
+      border: 2px solid $gray-200;
+      border-top: 2px solid $primary-color;
+      border-radius: $radius-full;
+      @include spin;
+      margin: 0 auto $spacing-2;
+    }
+    
+    .fallback-text {
+      color: $text-muted;
+      font-size: $font-sm;
+    }
+  }
+}
+
+// ============================================================================
+// ACCESSIBILITY ENHANCEMENTS
+// ============================================================================
+
+// Keyboard navigation
+.keyboard-navigation {
+  *:focus {
+    @include focus-ring;
+  }
+}
+
+// Screen reader improvements
+.sr-only-focusable {
+  @include sr-only;
+  
+  &:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: inherit;
+    margin: inherit;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+  }
+}
+
+// ============================================================================
+// FINAL OVERRIDES
+// ============================================================================
+
+// Son dakika düzeltmeleri
+// .override {
+//   Gerektiğinde kullanılacak
+// }
+
+// ============================================================================
+// DEVELOPMENT WARNINGS
+// ============================================================================
+
+// Eksik alt attribute uyarısı
+img:not([alt]) {
+  @if $env == 'development' {
+    outline: 3px solid red !important;
+  }
+}
+
+// Eksik label uyarısı
+input:not([aria-label]):not([aria-labelledby]):not([title]) {
+  @if $env == 'development' {
+    outline: 3px solid orange !important;
+  }
+}
