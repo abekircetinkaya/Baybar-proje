@@ -1,93 +1,169 @@
-# EREN PROJE
+# Baybar Kurumsal Tanıtım Sitesi
 
-## Proje Hakkında
-Bu proje, kullanıcıların çeşitli hizmetleri yönetebileceği ve analiz edebileceği bir platform sunar. Proje, hem frontend hem de backend bileşenlerini içerir ve modern web geliştirme teknolojileri kullanılarak geliştirilmiştir.
+Modern, dinamik ve admin paneli ile yönetilebilir kurumsal tanıtım sitesi.
 
-## Özellikler
-- Kullanıcı yönetimi
-- Proje ve plan yönetimi
-- Teklif ve iletişim modülleri
-- Raporlama ve analitik sistemi
-- Güvenli kimlik doğrulama ve yetkilendirme
+## 🚀 Özellikler
 
-## Kurulum
-### Gereksinimler
-- Node.js (v14 veya üzeri)
-- npm veya yarn
-- Bir veritabanı (ör. MongoDB)
+- **Modern Tasarım**: Minimalist ve profesyonel tasarım
+- **Responsive**: Mobil-first yaklaşım ile tüm cihazlarda uyumlu
+- **Dinamik İçerik**: Admin paneli ile tüm içerikler yönetilebilir
+- **SEO Optimized**: Arama motorları için optimize edilmiş
+- **Hızlı**: Vite ile hızlı geliştirme ve build
+- **Güvenli**: JWT tabanlı kimlik doğrulama
 
-### Adımlar
-1. Projeyi klonlayın:
-   ```bash
-   git clone <repository-url>
-   ```
-2. Gerekli bağımlılıkları yükleyin:
-   ```bash
-   cd client
-   npm install
-   cd ../server
-   npm install
-   ```
-3. `.env` dosyasını yapılandırın:
-   - `server/.env` dosyasını oluşturun ve gerekli yapılandırmaları ekleyin (ör. veritabanı bağlantı bilgileri, JWT anahtarları).
-
-4. Sunucuları başlatın:
-   - Backend için:
-     ```bash
-     cd server
-     npm start
-     ```
-   - Frontend için:
-     ```bash
-     cd client
-     npm start
-     ```
-
-## Proje Yapısı
-### Backend
-- **`server/app.js`**: Uygulama giriş noktası.
-- **`server/routes/`**: API rotaları.
-- **`server/models/`**: Veritabanı modelleri.
-- **`server/services/`**: İş mantığı ve servisler.
-- **`server/middleware/`**: Orta katman yazılımları.
+## 🛠️ Teknolojiler
 
 ### Frontend
-- **`client/src/App.js`**: Uygulama giriş noktası.
-- **`client/src/components/`**: Yeniden kullanılabilir bileşenler.
-- **`client/src/pages/`**: Sayfa bileşenleri.
-- **`client/src/services/`**: API çağrıları ve iş mantığı.
-- **`client/src/styles/`**: Stil dosyaları.
+- React 18
+- Vite
+- Tailwind CSS
+- React Router
+- React Hook Form
+- Framer Motion
+- Axios
 
-## Kullanılan Teknolojiler
 ### Backend
 - Node.js
 - Express.js
 - MongoDB
-- JWT (JSON Web Token)
+- Mongoose
+- JWT
+- Bcrypt
 
-### Frontend
-- React.js
-- SCSS
-- Axios
+## 📁 Proje Yapısı
 
-## Katkıda Bulunma
-1. Projeyi forklayın.
-2. Yeni bir dal oluşturun:
-   ```bash
-   git checkout -b yeni-ozellik
-   ```
-3. Değişikliklerinizi yapın ve commitleyin:
-   ```bash
-   git commit -m "Yeni özellik eklendi"
-   ```
-4. Dalınızı gönderin:
-   ```bash
-   git push origin yeni-ozellik
-   ```
-5. Bir pull request oluşturun.
+```
+baybar-corporate/
+├── client/                 # Frontend
+│   ├── public/            # Statik dosyalar
+│   ├── src/
+│   │   ├── components/    # React bileşenleri
+│   │   │   ├── common/    # Ortak bileşenler
+│   │   │   └── ui/        # Sayfa bileşenleri
+│   │   ├── pages/         # Sayfa bileşenleri
+│   │   ├── contexts/      # React Context
+│   │   ├── utils/         # Yardımcı fonksiyonlar
+│   │   └── styles/        # CSS dosyaları
+│   └── package.json
+├── server/                 # Backend
+│   ├── config/            # Konfigürasyon
+│   ├── controllers/       # API controller'ları
+│   ├── models/            # Veritabanı modelleri
+│   ├── routes/            # API route'ları
+│   ├── middleware/        # Middleware'ler
+│   └── services/          # Servisler
+└── docs/                  # Dokümantasyon
+```
 
-## Lisans
-Bu proje MIT Lisansı ile lisanslanmıştır. Daha fazla bilgi için `LICENSE` dosyasına bakabilirsiniz.
+## 🚀 Kurulum
 
-## İletişim
-Herhangi bir sorunuz veya öneriniz varsa, lütfen [email@example.com](mailto:email@example.com) adresinden bizimle iletişime geçin.
+### Gereksinimler
+- Node.js (v16 veya üzeri)
+- MongoDB
+- npm veya yarn
+
+### 1. Projeyi klonlayın
+```bash
+git clone <repository-url>
+cd baybar-corporate
+```
+
+### 2. Backend kurulumu
+```bash
+cd server
+npm install
+cp env.example .env
+# .env dosyasını düzenleyin
+npm run dev
+```
+
+### 3. Frontend kurulumu
+```bash
+cd client
+npm install
+cp env.example .env
+# .env dosyasını düzenleyin
+npm run dev
+```
+
+## 🔧 Konfigürasyon
+
+### Backend (.env)
+```env
+MONGODB_URI=mongodb://localhost:27017/baybar-corporate
+JWT_SECRET=your-super-secret-jwt-key
+PORT=5000
+NODE_ENV=development
+CLIENT_URL=http://localhost:3000
+```
+
+### Frontend (.env)
+```env
+VITE_API_URL=http://localhost:5000/api
+VITE_APP_NAME=Baybar
+```
+
+## 📱 Kullanım
+
+### Admin Paneli
+1. `/admin/login` adresine gidin
+2. Admin bilgileri ile giriş yapın
+3. Dashboard'dan tüm içerikleri yönetin
+
+### API Endpoints
+- `GET /api/content/:pageName` - Sayfa içeriği getir
+- `PUT /api/content/:pageName` - Sayfa içeriği güncelle
+- `GET /api/partners` - İş ortakları listesi
+- `POST /api/partners` - Yeni iş ortağı ekle
+- `POST /api/contact` - İletişim formu gönder
+- `POST /api/auth/login` - Admin girişi
+
+## 🎨 Tasarım Sistemi
+
+### Renkler
+- Primary: #1A237E (Koyu Mavi)
+- Secondary: #42A5F5 (Açık Mavi)
+- Accent: #FFC107 (Altın Sarısı)
+- Neutral: #FFFFFF, #F5F5F5, #000000
+
+### Tipografi
+- Başlıklar: Montserrat
+- Metin: Lato
+
+## 📦 Build ve Deploy
+
+### Development
+```bash
+# Backend
+cd server && npm run dev
+
+# Frontend
+cd client && npm run dev
+```
+
+### Production
+```bash
+# Backend
+cd server && npm start
+
+# Frontend
+cd client && npm run build
+```
+
+## 🤝 Katkıda Bulunma
+
+1. Fork yapın
+2. Feature branch oluşturun (`git checkout -b feature/amazing-feature`)
+3. Commit yapın (`git commit -m 'Add amazing feature'`)
+4. Push yapın (`git push origin feature/amazing-feature`)
+5. Pull Request oluşturun
+
+## 📄 Lisans
+
+Bu proje MIT lisansı altında lisanslanmıştır.
+
+## 📞 İletişim
+
+- Website: [baybar.com](https://baybar.com)
+- Email: info@baybar.com
+- Phone: +90 555 123 45 67

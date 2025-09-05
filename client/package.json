@@ -1,36 +1,38 @@
 {
-  "name": "baybar-frontend",
+  "name": "baybar-client",
   "version": "1.0.0",
-  "description": "Baybar Kurumsal Tanıtım Sitesi Frontend",
+  "description": "Baybar Kurumsal Tanıtım Sitesi - Frontend",
   "private": true,
+  "type": "module",
   "dependencies": {
-    "@testing-library/jest-dom": "^5.16.4",
-    "@testing-library/react": "^13.3.0",
-    "@testing-library/user-event": "^13.5.0",
-    "axios": "^0.27.2",
-    "framer-motion": "^12.23.12",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-helmet-async": "^2.0.5",
-    "react-icons": "^5.5.0",
-    "react-router-dom": "^6.3.0",
-    "react-scripts": "5.0.1",
-    "recharts": "^3.1.2",
-    "sass": "^1.54.0",
-    "socket.io-client": "^4.8.1",
-    "web-vitals": "^2.1.4"
+    "react-router-dom": "^6.20.1",
+    "axios": "^1.6.2",
+    "tailwindcss": "^3.3.6",
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.32",
+    "framer-motion": "^10.16.16",
+    "react-hook-form": "^7.48.2",
+    "react-hot-toast": "^2.4.1",
+    "lucide-react": "^0.294.0",
+    "react-helmet-async": "^1.3.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.2.0",
+    "vite": "^5.0.8",
+    "eslint": "^8.55.0",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-jsx-a11y": "^6.8.0",
+    "prettier": "^3.1.1"
   },
   "scripts": {
-    "start": "set PORT=3003 && react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "format": "prettier --write src/**/*.{js,jsx,css,md}"
   },
   "browserslist": {
     "production": [
